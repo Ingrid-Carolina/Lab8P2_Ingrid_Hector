@@ -29,6 +29,14 @@ public class Principal extends javax.swing.JFrame {
         modelo.addElement("Elfo");
         modelo.addElement("Humano");
         cb_raza.setModel(modelo);
+        
+        DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) cb_tipo.getModel();
+        modelo2.addElement("Lead");
+        modelo2.addElement("Support");
+        modelo2.addElement("Offensive");
+        modelo2.addElement("Spammer");
+        modelo2.addElement("Tank");
+        cb_tipo.setModel(modelo2);
     }
 
     /**
