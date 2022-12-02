@@ -29,7 +29,7 @@ public class Principal extends javax.swing.JFrame {
         modelo_clase.addElement("Mago");
         modelo_clase.addElement("Picaro");
         cb_clase.setModel(modelo_clase);
-        
+
         DefaultComboBoxModel modelo_nacionalidad = (DefaultComboBoxModel) cb_nac.getModel();
         modelo_nacionalidad.addElement("Norfair");
         modelo_nacionalidad.addElement("Brinstar");
@@ -37,14 +37,14 @@ public class Principal extends javax.swing.JFrame {
         modelo_nacionalidad.addElement("Zebes");
         modelo_nacionalidad.addElement("Crateria");
         cb_nac.setModel(modelo_nacionalidad);
-        
+
         DefaultComboBoxModel modelo_raza = (DefaultComboBoxModel) cb_raza.getModel();
         modelo_raza.addElement("Mediano");
         modelo_raza.addElement("Enano");
         modelo_raza.addElement("Elfo");
         modelo_raza.addElement("Humano");
         cb_raza.setModel(modelo_raza);
-        
+
         DefaultComboBoxModel modelo_tipo = (DefaultComboBoxModel) cb_tipo.getModel();
         modelo_tipo.addElement("Lead");
         modelo_tipo.addElement("Support");
@@ -52,22 +52,19 @@ public class Principal extends javax.swing.JFrame {
         modelo_tipo.addElement("Spammer");
         modelo_tipo.addElement("Tank");
         cb_tipo.setModel(modelo_tipo);
-        
-        
-        
+
         DefaultComboBoxModel modelo_arma = (DefaultComboBoxModel) cb_arma.getModel();
         modelo_arma.addElement("Pesada");
         modelo_arma.addElement("Ligera");
         modelo_arma.addElement("Escudo");
         cb_arma.setModel(modelo_arma);
-        
-        
+
         DefaultComboBoxModel modelo_magia = (DefaultComboBoxModel) cb_magia.getModel();
         modelo_magia.addElement("Mago Blanco");
         modelo_magia.addElement("Mago Negro");
         modelo_magia.addElement("Sanador");
         cb_magia.setModel(modelo_magia);
-        
+
         DefaultComboBoxModel modelo_ins = (DefaultComboBoxModel) cb_ins.getModel();
         modelo_ins.addElement("Amuleto");
         modelo_ins.addElement("Arma");
@@ -430,7 +427,6 @@ public class Principal extends javax.swing.JFrame {
 
     private void cb_claseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_claseItemStateChanged
         try {
-            //Si es de tipo Gerente bloqueamos la otra opcion
             if (cb_clase.getSelectedIndex() == 0) {
 
                 cb_arma.setEnabled(false);
@@ -441,8 +437,13 @@ public class Principal extends javax.swing.JFrame {
 
                 jt_dios.setEnabled(true);
                 jt_invo.setEnabled(true);
+                DefaultComboBoxModel modelo_nuevo = (DefaultComboBoxModel) cb_tipo.getModel();
+                modelo_nuevo.removeAllElements();
+                modelo_nuevo.addElement("Lead");
+                cb_tipo.setModel(modelo_nuevo);
+                String tipo = cb_tipo.getSelectedItem().toString();
 
-            } else if(cb_clase.getSelectedIndex() == 1){
+            } else if (cb_clase.getSelectedIndex() == 1) {
                 jt_dios.setEnabled(false);
                 jt_invo.setEnabled(false);
                 cb_magia.setEnabled(false);
@@ -450,47 +451,110 @@ public class Principal extends javax.swing.JFrame {
                 cant_robo.setEnabled(false);
                 cb_arma.setEnabled(true);
                 nv_xp.setEnabled(true);
-                
-                
-                
-                
-            } else if(cb_clase.getSelectedIndex() == 2){
+                DefaultComboBoxModel modelo_nuevo = (DefaultComboBoxModel) cb_tipo.getModel();
+                modelo_nuevo.removeAllElements();
+                modelo_nuevo.addElement("Lead");
+                modelo_nuevo.addElement("Support");
+                modelo_nuevo.addElement("Offensive");
+                cb_tipo.setModel(modelo_nuevo);
+                String tipo = cb_tipo.getSelectedItem().toString();
+
+            } else if (cb_clase.getSelectedIndex() == 2) {
                 jt_dios.setEnabled(false);
                 jt_invo.setEnabled(false);
-               cb_ins.setEnabled(false);
+                cb_ins.setEnabled(false);
                 cant_robo.setEnabled(false);
                 cb_arma.setEnabled(false);
                 nv_xp.setEnabled(false);
-                 cb_magia.setEnabled(true);
-                
-                
-                
-                
-            }else if(cb_clase.getSelectedIndex() == 3){
+                cb_magia.setEnabled(true);
+                DefaultComboBoxModel modelo_nuevo = (DefaultComboBoxModel) cb_tipo.getModel();
+                modelo_nuevo.removeAllElements();
+                modelo_nuevo.addElement("Support");
+                modelo_nuevo.addElement("Tank");
+                cb_tipo.setModel(modelo_nuevo);
+                String tipo = cb_tipo.getSelectedItem().toString();
+
+            } else if (cb_clase.getSelectedIndex() == 3) {
                 jt_dios.setEnabled(false);
                 jt_invo.setEnabled(false);
-              cb_arma.setEnabled(false);
+                cb_arma.setEnabled(false);
                 nv_xp.setEnabled(false);
-                 cb_magia.setEnabled(false);
-                 cb_ins.setEnabled(true);
+                cb_magia.setEnabled(false);
+                cb_ins.setEnabled(true);
                 cant_robo.setEnabled(true);
-                
-                
-                
+                DefaultComboBoxModel modelo_nuevo = (DefaultComboBoxModel) cb_tipo.getModel();
+                modelo_nuevo.removeAllElements();
+                modelo_nuevo.addElement("Spammer");
+                modelo_nuevo.addElement("Tank");
+                cb_tipo.setModel(modelo_nuevo);
+                String tipo = cb_tipo.getSelectedItem().toString();
+
             }
-            
-            
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_cb_claseItemStateChanged
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-       String nombre ;
-       
-        
-        
-        
+        String nombre;
+        String descrip;
+        int estatura;
+        int peso;
+        int edad;
+        int hp = 0;
+        DefaultComboBoxModel modelo_nac = (DefaultComboBoxModel) cb_nac.getModel();
+        String nac = cb_nac.getSelectedItem().toString();
+        String raza = cb_raza.getSelectedItem().toString();
+        try {
+            nombre = jt_nombre.getText();
+            if (cb_raza.getSelectedIndex() == 0) {
+                hp = 50 + r.nextInt(60);
+            } else if (cb_raza.getSelectedIndex() == 1) {
+                hp = 80 + r.nextInt(100);
+            } else if (cb_raza.getSelectedIndex() == 2) {
+                hp = 50 + r.nextInt(70);
+            } else if (cb_raza.getSelectedIndex() == 3) {
+                hp = 40 + r.nextInt(75);
+            }
+            descrip = jt_Descripcion.getText();
+            estatura = Integer.parseInt(jft_estatura.getText());
+            peso = Integer.parseInt(jft_peso.getText());
+            edad = Integer.parseInt(jft_edad.getText());
+            if (cb_clase.getSelectedIndex() == 0) {//si es clerigo
+                String dios = jt_dios.getText();
+                String invoca = jt_invo.getText();
+                int ac = 40;
+                int cs = 97;
+                String tipo = cb_tipo.getSelectedItem().toString();
+                per.add(new Clerigo(dios, invoca, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+
+            } else if (cb_clase.getSelectedIndex() == 1) {
+                int ac = 65;
+                int cs = 93;
+                String tipo = cb_tipo.getSelectedItem().toString();
+                String arma = cb_arma.getSelectedItem().toString();
+                int niv = Integer.parseInt(nv_xp.getText());
+                per.add(new Barbaro(arma, niv, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+            } else if (cb_clase.getSelectedIndex() == 2) {
+                int ac = 20;
+                int cs = 101;
+                String tipo = cb_tipo.getSelectedItem().toString();
+                String mago = cb_magia.getSelectedItem().toString();
+                per.add(new Mago(mago, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+            } else if (cb_clase.getSelectedIndex() == 3) {
+                int ac = 50;
+                int cs = 80;
+                String tipo = cb_tipo.getSelectedItem().toString();
+                String instru = cb_ins.getSelectedItem().toString();
+                int cant = Integer.parseInt(cant_robo.getText());
+                per.add(new Picaro(instru, cant, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+
+            }
+        } catch (Exception e) {
+        }
+
+
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
