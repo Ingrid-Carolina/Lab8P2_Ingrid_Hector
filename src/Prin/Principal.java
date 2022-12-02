@@ -3,6 +3,7 @@ package Prin;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -521,14 +522,20 @@ public class Principal extends javax.swing.JFrame {
             estatura = Integer.parseInt(jft_estatura.getText());
             peso = Integer.parseInt(jft_peso.getText());
             edad = Integer.parseInt(jft_edad.getText());
-            if (cb_clase.getSelectedIndex() == 0) {//si es clerigo
+            if (cb_clase.getSelectedIndex() == 0) {
                 String dios = jt_dios.getText();
                 String invoca = jt_invo.getText();
                 int ac = 40;
                 int cs = 97;
                 String tipo = cb_tipo.getSelectedItem().toString();
                 per.add(new Clerigo(dios, invoca, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
-
+                administrarClerigo admc = new administrarClerigo("./CLERIGO.ih");
+                admc.cargarArchivo();
+                admc.setClerigo(new Clerigo(dios, invoca, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                admc.escribirArchivo();
+                JOptionPane.showMessageDialog(this, "Se creó y se guardó exitosamente un clerigo!");
+                jt_dios.setText("");
+                jt_invo.setText("");
             } else if (cb_clase.getSelectedIndex() == 1) {
                 int ac = 65;
                 int cs = 93;
@@ -536,6 +543,7 @@ public class Principal extends javax.swing.JFrame {
                 String arma = cb_arma.getSelectedItem().toString();
                 int niv = Integer.parseInt(nv_xp.getText());
                 per.add(new Barbaro(arma, niv, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                nv_xp.setText("");
             } else if (cb_clase.getSelectedIndex() == 2) {
                 int ac = 20;
                 int cs = 101;
@@ -549,9 +557,15 @@ public class Principal extends javax.swing.JFrame {
                 String instru = cb_ins.getSelectedItem().toString();
                 int cant = Integer.parseInt(cant_robo.getText());
                 per.add(new Picaro(instru, cant, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
-
+                cant_robo.setText("");
             }
-        } catch (Exception e) {
+            jt_nombre.setText("");
+            jt_Descripcion.setText("");
+            jft_edad.setText("");
+            jft_peso.setText("");
+            jft_estatura.setText("");
+            
+       } catch (Exception e) {
         }
 
 
@@ -641,4 +655,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jt_nombre;
     private javax.swing.JFormattedTextField nv_xp;
     // End of variables declaration//GEN-END:variables
+    /*ArrayList<Clerigo> listaClerigos = new ArrayList();
+    ArrayList<Barbaro> listaBarbaros = new ArrayList();
+    ArrayList<Mago> listaMagos = new ArrayList();
+    ArrayList<Picaro> listaPicaros = new ArrayList();*/
 }
