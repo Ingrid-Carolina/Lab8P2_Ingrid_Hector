@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class administrarPicaro {
 
     private ArrayList<Picaro> listaPicaros = new ArrayList();
-    private File archivo = null;
+    private File archivo = new File("");
 
     public administrarPicaro(String path) {
         archivo = new File(path);

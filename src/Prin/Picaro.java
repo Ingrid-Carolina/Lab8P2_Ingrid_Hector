@@ -1,6 +1,8 @@
 package Prin;
 
-public class Picaro extends Personaje {
+import java.io.Serializable;
+
+public class Picaro extends Personaje implements Serializable{
 
     String tipoInstrumento;
     int cantrobo;

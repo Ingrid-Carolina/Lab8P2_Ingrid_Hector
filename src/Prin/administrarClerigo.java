@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class administrarClerigo {
 
     private ArrayList<Clerigo> listaClerigos = new ArrayList();
-    private File archivo = null;
+    private File archivo = new File("");
 
     public administrarClerigo(String path) {
         archivo = new File(path);

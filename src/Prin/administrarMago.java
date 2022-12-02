@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class administrarMago {
 
     private ArrayList<Mago> listaMagos = new ArrayList();
-    private File archivo = null;
+    private File archivo = new File("");
 
     public administrarMago(String path) {
         archivo = new File(path);

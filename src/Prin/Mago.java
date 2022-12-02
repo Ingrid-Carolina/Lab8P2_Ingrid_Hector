@@ -1,6 +1,8 @@
 package Prin;
 
-public class Mago extends Personaje {
+import java.io.Serializable;
+
+public class Mago extends Personaje implements Serializable{
 
     private String tipodeMagia;
 

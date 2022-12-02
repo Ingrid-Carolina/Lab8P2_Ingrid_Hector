@@ -1,6 +1,8 @@
 package Prin;
 
-public class Personaje {
+import java.io.Serializable;
+
+public class Personaje implements Serializable{
 
     protected String nombre;
     protected String raza;
