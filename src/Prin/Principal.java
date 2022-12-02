@@ -23,20 +23,35 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         //defaultpersonajes();
-        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_raza.getModel();
-        modelo.addElement("Mediano");
-        modelo.addElement("Enano");
-        modelo.addElement("Elfo");
-        modelo.addElement("Humano");
-        cb_raza.setModel(modelo);
+        DefaultComboBoxModel modelo_clase = (DefaultComboBoxModel) cb_clase.getModel();
+        modelo_clase.addElement("Clerigo");
+        modelo_clase.addElement("Barbaro");
+        modelo_clase.addElement("Mago");
+        modelo_clase.addElement("Picaro");
+        cb_clase.setModel(modelo_clase);
         
-        DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) cb_tipo.getModel();
-        modelo2.addElement("Lead");
-        modelo2.addElement("Support");
-        modelo2.addElement("Offensive");
-        modelo2.addElement("Spammer");
-        modelo2.addElement("Tank");
-        cb_tipo.setModel(modelo2);
+        DefaultComboBoxModel modelo_nacionalidad = (DefaultComboBoxModel) cb_nac.getModel();
+        modelo_nacionalidad.addElement("Norfair");
+        modelo_nacionalidad.addElement("Brinstar");
+        modelo_nacionalidad.addElement("Maridia");
+        modelo_nacionalidad.addElement("Zebes");
+        modelo_nacionalidad.addElement("Crateria");
+        cb_nac.setModel(modelo_nacionalidad);
+        
+        DefaultComboBoxModel modelo_raza = (DefaultComboBoxModel) cb_raza.getModel();
+        modelo_raza.addElement("Mediano");
+        modelo_raza.addElement("Enano");
+        modelo_raza.addElement("Elfo");
+        modelo_raza.addElement("Humano");
+        cb_raza.setModel(modelo_raza);
+        
+        DefaultComboBoxModel modelo_tipo = (DefaultComboBoxModel) cb_tipo.getModel();
+        modelo_tipo.addElement("Lead");
+        modelo_tipo.addElement("Support");
+        modelo_tipo.addElement("Offensive");
+        modelo_tipo.addElement("Spammer");
+        modelo_tipo.addElement("Tank");
+        cb_tipo.setModel(modelo_tipo);
     }
 
     /**
@@ -61,7 +76,7 @@ public class Principal extends javax.swing.JFrame {
         cb_nac = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         cb_tipo = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cb_clase = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -94,6 +109,12 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Clase");
+
+        cb_clase.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_claseItemStateChanged(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Tipo");
@@ -128,20 +149,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(26, 26, 26)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cb_raza, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -162,7 +170,22 @@ public class Principal extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cb_clase, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cb_raza, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(43, 43, 43)
@@ -187,7 +210,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cb_clase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,6 +315,11 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cb_claseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_claseItemStateChanged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cb_claseItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -335,11 +363,11 @@ public class Principal extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_clase;
     private javax.swing.JComboBox<String> cb_nac;
     private javax.swing.JComboBox<String> cb_raza;
     private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
