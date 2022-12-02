@@ -1,5 +1,7 @@
+package Prin;
 
-public class Mago extends Personaje{
+public class Mago extends Personaje {
+
     private String tipodeMagia;
 
     public Mago() {
@@ -10,7 +12,7 @@ public class Mago extends Personaje{
     }
 
     public Mago(String tipodeMagia, String nombre, String raza, double estaura, double peso, int edad, int Ac, int Cs, int Hp, String descripcion, String nacionalidad, String Tp) {
-        super(nombre, raza, estaura, peso, edad,  Ac, Cs, Hp, descripcion, nacionalidad, Tp);
+        super(nombre, raza, estaura, peso, edad, Ac, Cs, Hp, descripcion, nacionalidad, Tp);
         this.tipodeMagia = tipodeMagia;
     }
 
@@ -24,7 +26,7 @@ public class Mago extends Personaje{
 
     @Override
     public String toString() {
-        return super.toString() +"Mago{" + "tipodeMagia=" + tipodeMagia + '}';
+        return super.toString() + "Mago{" + "tipodeMagia=" + tipodeMagia + '}';
     }
-    
+
 }

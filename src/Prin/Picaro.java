@@ -1,5 +1,7 @@
+package Prin;
 
 public class Picaro extends Personaje {
+
     String tipoInstrumento;
     int cantrobo;
 
@@ -35,7 +37,7 @@ public class Picaro extends Personaje {
 
     @Override
     public String toString() {
-        return super.toString() +"Picaro{" + "tipoInstrumento=" + tipoInstrumento + ", cantrobo=" + cantrobo + '}';
+        return super.toString() + "Picaro{" + "tipoInstrumento=" + tipoInstrumento + ", cantrobo=" + cantrobo + '}';
     }
-    
+
 }

@@ -1,17 +1,18 @@
+package Prin;
 
 public class Personaje {
+
     protected String nombre;
     protected String raza;
     protected double estaura;
-   protected double peso;
-   protected int edad;
+    protected double peso;
+    protected int edad;
     protected int Ac;
     protected int Cs;
     protected int Hp;
     protected String descripcion;
-   protected String nacionalidad;
+    protected String nacionalidad;
     protected String Tp;
-    
 
     public Personaje() {
     }
@@ -29,8 +30,6 @@ public class Personaje {
         this.nacionalidad = nacionalidad;
         this.Tp = Tp;
     }
-
-   
 
     public String getNombre() {
         return nombre;
@@ -125,7 +124,4 @@ public class Personaje {
         return "Personaje{" + "nombre=" + nombre + ", raza=" + raza + ", estaura=" + estaura + ", peso=" + peso + ", edad=" + edad + ", Ac=" + Ac + ", Cs=" + Cs + ", Hp=" + Hp + ", descripcion=" + descripcion + ", nacionalidad=" + nacionalidad + ", Tp=" + Tp + '}';
     }
 
-    
-    
-    
 }

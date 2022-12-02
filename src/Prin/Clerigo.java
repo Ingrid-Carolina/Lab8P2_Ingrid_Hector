@@ -1,14 +1,15 @@
+package Prin;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
-
 /**
  *
  * @author ADMINISTRADOR1
  */
 public class Clerigo extends Personaje {
+
     private String dios;
     private String invocacion;
 
@@ -46,5 +47,5 @@ public class Clerigo extends Personaje {
     public String toString() {
         return super.toString() + "Clerigo{" + "dios=" + dios + ", invocacion=" + invocacion + '}';
     }
-    
+
 }
