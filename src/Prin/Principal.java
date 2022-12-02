@@ -533,7 +533,7 @@ public class Principal extends javax.swing.JFrame {
                 admc.cargarArchivo();
                 admc.setClerigo(new Clerigo(dios, invoca, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
                 admc.escribirArchivo();
-                JOptionPane.showMessageDialog(this, "Se creó y se guardó exitosamente un clerigo!");
+                JOptionPane.showMessageDialog(this, "Se creó y se guardó exitosamente un Clerigo!");
                 jt_dios.setText("");
                 jt_invo.setText("");
             } else if (cb_clase.getSelectedIndex() == 1) {
@@ -543,6 +543,11 @@ public class Principal extends javax.swing.JFrame {
                 String arma = cb_arma.getSelectedItem().toString();
                 int niv = Integer.parseInt(nv_xp.getText());
                 per.add(new Barbaro(arma, niv, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                administrarBarbaro admb = new administrarBarbaro("./BARBARO.ih");
+                admb.cargarArchivo();
+                admb.setBarbaro(new Barbaro(arma, niv, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                admb.escribirArchivo();
+                JOptionPane.showMessageDialog(this, "Se creó y se guardó exitosamente un Barbaro!");
                 nv_xp.setText("");
             } else if (cb_clase.getSelectedIndex() == 2) {
                 int ac = 20;
@@ -550,6 +555,11 @@ public class Principal extends javax.swing.JFrame {
                 String tipo = cb_tipo.getSelectedItem().toString();
                 String mago = cb_magia.getSelectedItem().toString();
                 per.add(new Mago(mago, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                administrarMago admM = new administrarMago("./MAGO.ih");
+                admM.cargarArchivo();
+                admM.setMago(new Mago(mago, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                admM.escribirArchivo();
+                JOptionPane.showMessageDialog(this, "Se creó y se guardó exitosamente un Mago!");
             } else if (cb_clase.getSelectedIndex() == 3) {
                 int ac = 50;
                 int cs = 80;
@@ -557,6 +567,11 @@ public class Principal extends javax.swing.JFrame {
                 String instru = cb_ins.getSelectedItem().toString();
                 int cant = Integer.parseInt(cant_robo.getText());
                 per.add(new Picaro(instru, cant, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                administrarPicaro admP = new administrarPicaro("./PICARO.ih");
+                admP.cargarArchivo();
+                admP.setPicaro(new Picaro(instru, cant, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                admP.escribirArchivo();
+                JOptionPane.showMessageDialog(this, "Se creó y se guardó exitosamente un Picaro!");
                 cant_robo.setText("");
             }
             jt_nombre.setText("");
@@ -564,8 +579,8 @@ public class Principal extends javax.swing.JFrame {
             jft_edad.setText("");
             jft_peso.setText("");
             jft_estatura.setText("");
-            
-       } catch (Exception e) {
+
+        } catch (Exception e) {
         }
 
 
