@@ -84,8 +84,8 @@
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jTextField4" min="-2" pref="71" max="-2" attributes="0"/>
-                                                  <Component id="jTextField3" min="-2" pref="71" max="-2" attributes="0"/>
+                                                  <Component id="jt_invo" min="-2" pref="71" max="-2" attributes="0"/>
+                                                  <Component id="jt_dios" min="-2" pref="71" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -111,7 +111,7 @@
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                   <Component id="cb_arma" max="32767" attributes="0"/>
-                                                  <Component id="jFormattedTextField4" max="32767" attributes="0"/>
+                                                  <Component id="nv_xp" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -148,7 +148,7 @@
                                           <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                                           <Component id="cb_ins" max="32767" attributes="0"/>
                                           <Component id="jLabel17" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jFormattedTextField5" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="cant_robo" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -221,14 +221,14 @@
                               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jt_dios" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jt_invo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jFormattedTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nv_xp" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="79" max="32767" attributes="0"/>
                           </Group>
@@ -249,7 +249,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jFormattedTextField5" min="-2" max="-2" attributes="0"/>
+                              <Component id="cant_robo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -416,9 +416,9 @@
                 <Property name="text" type="java.lang.String" value="Dios"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField3">
+            <Component class="javax.swing.JTextField" name="jt_dios">
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField4">
+            <Component class="javax.swing.JTextField" name="jt_invo">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
@@ -430,7 +430,7 @@
                 <Property name="text" type="java.lang.String" value="Nivel XP"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField4">
+            <Component class="javax.swing.JFormattedTextField" name="nv_xp">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                   <Format format="######" subtype="-1" type="0"/>
@@ -487,7 +487,7 @@
                 <Property name="text" type="java.lang.String" value="Cantidad de Robos"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField5">
+            <Component class="javax.swing.JFormattedTextField" name="cant_robo">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                   <Format format="#####" subtype="-1" type="0"/>
