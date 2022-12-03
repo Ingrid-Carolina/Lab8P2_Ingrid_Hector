@@ -61,11 +61,11 @@ public class Principal extends javax.swing.JFrame {
         for (int i = 0; i < per.size(); i++) {
             System.out.println(per.get(i));
         }
-        DefaultComboBoxModel modelo_combo = (DefaultComboBoxModel) cb_listar_per.getModel();
+         DefaultListModel  modelo_combo = ( DefaultListModel ) jl.getModel();
         for (int i = 0; i < per.size(); i++) {
             modelo_combo.addElement(per.get(i).getNombre());
         }
-        cb_listar_per.setModel(modelo_combo);
+        jl.setModel(modelo_combo);
         
 
         DefaultComboBoxModel modelo_clase = (DefaultComboBoxModel) cb_clase.getModel();
@@ -176,8 +176,9 @@ public class Principal extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         cb_listar = new javax.swing.JComboBox<>();
-        cb_listar_per = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jl = new javax.swing.JList<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -474,39 +475,43 @@ public class Principal extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel23.setText("Seleccione el personaje");
 
+        jl.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(jl);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(262, 262, 262)
-                                .addComponent(jLabel23))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(169, 169, 169)
-                                .addComponent(cb_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(251, 251, 251)
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 248, Short.MAX_VALUE))
-                    .addComponent(cb_listar_per, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addComponent(jScrollPane2)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 219, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel23)
+                        .addGap(287, 287, 287))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(cb_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(204, 204, 204))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(268, 268, 268))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cb_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel23)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cb_listar_per, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                .addGap(19, 19, 19))
         );
 
         tab.addTab("Ver Atributos De un Personaje", jPanel3);
@@ -520,6 +525,11 @@ public class Principal extends javax.swing.JFrame {
 
         bt_eliminar_per.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt_eliminar_per.setText("Eliminar");
+        bt_eliminar_per.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_eliminar_perMouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Listar");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -763,46 +773,45 @@ public class Principal extends javax.swing.JFrame {
     private void cb_listarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_listarItemStateChanged
         // TODO add your handling code here:
         if (cb_listar.getSelectedIndex() == 1) {
-            
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_listar_per.getModel();
-            modelo.removeAllElements();
+            DefaultListModel lista = (DefaultListModel) jl.getModel();
+            lista.removeAllElements();
             for (Personaje personaje : per) {
                 if (personaje instanceof Barbaro) {
-                    modelo.addElement(personaje);
+                    lista.addElement(personaje);
                 }
-                
+
             }
         } else if (cb_listar.getSelectedIndex() == 2) {
-            
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_listar_per.getModel();
-            modelo.removeAllElements();
+
+            DefaultListModel lista = (DefaultListModel) jl.getModel();
+            lista.removeAllElements();
             for (Personaje personaje : per) {
                 if (personaje instanceof Mago) {
-                    modelo.addElement(personaje);
+                    lista.addElement(personaje);
                 }
-                
+
             }
         } else if (cb_listar.getSelectedIndex() == 3) {
-            
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_listar_per.getModel();
-            modelo.removeAllElements();
+
+            DefaultListModel lista = (DefaultListModel) jl.getModel();
+            lista.removeAllElements();
             for (Personaje personaje : per) {
                 if (personaje instanceof Picaro) {
-                    modelo.addElement(personaje);
+                    lista.addElement(personaje);
                 }
-                
+
             }
         } else if (cb_listar.getSelectedIndex() == 0) {
-            
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_listar_per.getModel();
-            modelo.removeAllElements();
+
+            DefaultListModel lista = (DefaultListModel) jl.getModel();
+            lista.removeAllElements();
             for (Personaje personaje : per) {
                 if (personaje instanceof Clerigo) {
-                    modelo.addElement(personaje);
+                    lista.addElement(personaje);
                 }
-                
+
             }
-        }        
+        }      
     }//GEN-LAST:event_cb_listarItemStateChanged
 
     private void tabStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabStateChanged
@@ -823,6 +832,11 @@ public class Principal extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void bt_eliminar_perMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eliminar_perMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_bt_eliminar_perMouseClicked
 
     /**
      * @param args the command line arguments
@@ -867,7 +881,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_clase;
     private javax.swing.JComboBox<String> cb_ins;
     private javax.swing.JComboBox<String> cb_listar;
-    private javax.swing.JComboBox<String> cb_listar_per;
     private javax.swing.JComboBox<String> cb_magia;
     private javax.swing.JComboBox<String> cb_nac;
     private javax.swing.JComboBox<String> cb_raza;
@@ -903,9 +916,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JFormattedTextField jft_edad;
     private javax.swing.JFormattedTextField jft_estatura;
     private javax.swing.JFormattedTextField jft_peso;
+    private javax.swing.JList<String> jl;
     private javax.swing.JTextField jt_Descripcion;
     private javax.swing.JTextField jt_dios;
     private javax.swing.JTextField jt_invo;
