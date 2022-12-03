@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author ADMINISTRADOR1
  */
 public class Principal extends javax.swing.JFrame {
-
+    
     static ArrayList<Personaje> per = new ArrayList();
     static Random r = new Random();
 
@@ -24,15 +24,49 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-
-        administrarClerigo admc = new administrarClerigo();
         try {
             admc.cargarArchivo();
+            for (Clerigo t : admc.getListaClerigos()) {
+                per.add(t);
+            }
+
         } catch (Exception e) {
         }
-        for (Clerigo listaClerigo : admc.getListaClerigos()) {
-            listaClerigos.add(listaClerigo);
+
+        try {
+            admB.cargarArchivo();
+            for (Barbaro t : admB.getListaBarbaros()) {
+                per.add(t);
+            }
+        } catch (Exception e) {
         }
+
+        try {
+            admM.cargarArchivo();
+            for (Mago t : admM.getListaMagos()) {
+                per.add(t);
+            }
+
+        } catch (Exception e) {
+        }
+
+        try {
+            admP.cargarArchivo();
+            for (Picaro t : admP.getListaPicaros()) {
+                per.add(t);
+            }
+        } catch (Exception e) {
+        }
+        
+        for (int i = 0; i < per.size(); i++) {
+            System.out.println(per.get(i));
+        }
+        DefaultComboBoxModel modelo_combo = (DefaultComboBoxModel) cb_listar_per.getModel();
+        for (int i = 0; i < per.size(); i++) {
+            modelo_combo.addElement(per.get(i).getNombre());
+        }
+        cb_listar_per.setModel(modelo_combo);
+        
 
         DefaultComboBoxModel modelo_clase = (DefaultComboBoxModel) cb_clase.getModel();
         modelo_clase.addElement("Clerigo");
@@ -40,14 +74,14 @@ public class Principal extends javax.swing.JFrame {
         modelo_clase.addElement("Mago");
         modelo_clase.addElement("Picaro");
         cb_clase.setModel(modelo_clase);
-
+        
         DefaultComboBoxModel modelo_listar = (DefaultComboBoxModel) cb_listar.getModel();
         modelo_listar.addElement("Clerigo");
         modelo_listar.addElement("Barbaro");
         modelo_listar.addElement("Mago");
         modelo_listar.addElement("Picaro");
         cb_listar.setModel(modelo_listar);
-
+        
         DefaultComboBoxModel modelo_nacionalidad = (DefaultComboBoxModel) cb_nac.getModel();
         modelo_nacionalidad.addElement("Norfair");
         modelo_nacionalidad.addElement("Brinstar");
@@ -55,14 +89,14 @@ public class Principal extends javax.swing.JFrame {
         modelo_nacionalidad.addElement("Zebes");
         modelo_nacionalidad.addElement("Crateria");
         cb_nac.setModel(modelo_nacionalidad);
-
+        
         DefaultComboBoxModel modelo_raza = (DefaultComboBoxModel) cb_raza.getModel();
         modelo_raza.addElement("Mediano");
         modelo_raza.addElement("Enano");
         modelo_raza.addElement("Elfo");
         modelo_raza.addElement("Humano");
         cb_raza.setModel(modelo_raza);
-
+        
         DefaultComboBoxModel modelo_tipo = (DefaultComboBoxModel) cb_tipo.getModel();
         modelo_tipo.addElement("Lead");
         modelo_tipo.addElement("Support");
@@ -70,19 +104,19 @@ public class Principal extends javax.swing.JFrame {
         modelo_tipo.addElement("Spammer");
         modelo_tipo.addElement("Tank");
         cb_tipo.setModel(modelo_tipo);
-
+        
         DefaultComboBoxModel modelo_arma = (DefaultComboBoxModel) cb_arma.getModel();
         modelo_arma.addElement("Pesada");
         modelo_arma.addElement("Ligera");
         modelo_arma.addElement("Escudo");
         cb_arma.setModel(modelo_arma);
-
+        
         DefaultComboBoxModel modelo_magia = (DefaultComboBoxModel) cb_magia.getModel();
         modelo_magia.addElement("Mago Blanco");
         modelo_magia.addElement("Mago Negro");
         modelo_magia.addElement("Sanador");
         cb_magia.setModel(modelo_magia);
-
+        
         DefaultComboBoxModel modelo_ins = (DefaultComboBoxModel) cb_ins.getModel();
         modelo_ins.addElement("Amuleto");
         modelo_ins.addElement("Arma");
@@ -145,9 +179,20 @@ public class Principal extends javax.swing.JFrame {
         cb_listar_per = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lista_eliminar = new javax.swing.JList<>();
+        bt_eliminar_per = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        tab.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tabStateChanged(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Personajes");
@@ -405,7 +450,7 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addGap(46, 46, 46)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cb_ins, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -426,6 +471,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel23.setText("Seleccione el personaje");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -433,39 +479,91 @@ public class Principal extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cb_listar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(jLabel23)
-                    .addComponent(cb_listar_per, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(554, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(262, 262, 262)
+                                .addComponent(jLabel23))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(169, 169, 169)
+                                .addComponent(cb_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(251, 251, 251)
+                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 248, Short.MAX_VALUE))
+                    .addComponent(cb_listar_per, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cb_listar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cb_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addComponent(jLabel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cb_listar_per, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addComponent(cb_listar_per, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         tab.addTab("Ver Atributos De un Personaje", jPanel3);
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("Seleccione el personaje a eliminar:");
+
+        lista_eliminar.setModel(new DefaultListModel());
+        jScrollPane1.setViewportView(lista_eliminar);
+
+        bt_eliminar_per.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bt_eliminar_per.setText("Eliminar");
+
+        jButton2.setText("Listar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 729, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(bt_eliminar_per, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(224, 224, 224)
+                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 441, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_eliminar_per, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tab.addTab("Eliminar un Personaje", jPanel4);
@@ -478,7 +576,7 @@ public class Principal extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 441, Short.MAX_VALUE)
+            .addGap(0, 449, Short.MAX_VALUE)
         );
 
         tab.addTab("Combate", jPanel5);
@@ -500,13 +598,13 @@ public class Principal extends javax.swing.JFrame {
     private void cb_claseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_claseItemStateChanged
         try {
             if (cb_clase.getSelectedIndex() == 0) {
-
+                
                 cb_arma.setEnabled(false);
                 nv_xp.setEnabled(false);
                 cb_magia.setEnabled(false);
                 cb_ins.setEnabled(false);
                 cant_robo.setEnabled(false);
-
+                
                 jt_dios.setEnabled(true);
                 jt_invo.setEnabled(true);
                 DefaultComboBoxModel modelo_nuevo = (DefaultComboBoxModel) cb_tipo.getModel();
@@ -514,7 +612,7 @@ public class Principal extends javax.swing.JFrame {
                 modelo_nuevo.addElement("Lead");
                 cb_tipo.setModel(modelo_nuevo);
                 String tipo = cb_tipo.getSelectedItem().toString();
-
+                
             } else if (cb_clase.getSelectedIndex() == 1) {
                 jt_dios.setEnabled(false);
                 jt_invo.setEnabled(false);
@@ -530,7 +628,7 @@ public class Principal extends javax.swing.JFrame {
                 modelo_nuevo.addElement("Offensive");
                 cb_tipo.setModel(modelo_nuevo);
                 String tipo = cb_tipo.getSelectedItem().toString();
-
+                
             } else if (cb_clase.getSelectedIndex() == 2) {
                 jt_dios.setEnabled(false);
                 jt_invo.setEnabled(false);
@@ -545,7 +643,7 @@ public class Principal extends javax.swing.JFrame {
                 modelo_nuevo.addElement("Tank");
                 cb_tipo.setModel(modelo_nuevo);
                 String tipo = cb_tipo.getSelectedItem().toString();
-
+                
             } else if (cb_clase.getSelectedIndex() == 3) {
                 jt_dios.setEnabled(false);
                 jt_invo.setEnabled(false);
@@ -560,9 +658,9 @@ public class Principal extends javax.swing.JFrame {
                 modelo_nuevo.addElement("Tank");
                 cb_tipo.setModel(modelo_nuevo);
                 String tipo = cb_tipo.getSelectedItem().toString();
-
+                
             }
-
+            
         } catch (Exception e) {
         }
     }//GEN-LAST:event_cb_claseItemStateChanged
@@ -593,6 +691,7 @@ public class Principal extends javax.swing.JFrame {
             estatura = Integer.parseInt(jft_estatura.getText());
             peso = Integer.parseInt(jft_peso.getText());
             edad = Integer.parseInt(jft_edad.getText());
+            
             if (cb_clase.getSelectedIndex() == 0) {
                 String dios = jt_dios.getText();
                 String invoca = jt_invo.getText();
@@ -600,9 +699,10 @@ public class Principal extends javax.swing.JFrame {
                 int cs = 97;
                 String tipo = cb_tipo.getSelectedItem().toString();
                 per.add(new Clerigo(dios, invoca, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                listaClerigos.add(new Clerigo(dios, invoca, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
                 administrarClerigo admc = new administrarClerigo("./CLERIGO.ih");
                 admc.cargarArchivo();
-                admc.setClerigo(new Clerigo(dios, invoca, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                admc.setListaClerigos(listaClerigos);
                 admc.escribirArchivo();
                 JOptionPane.showMessageDialog(this, "Se creó y se guardó exitosamente un Clerigo!");
                 jt_dios.setText("");
@@ -614,9 +714,10 @@ public class Principal extends javax.swing.JFrame {
                 String arma = cb_arma.getSelectedItem().toString();
                 int niv = Integer.parseInt(nv_xp.getText());
                 per.add(new Barbaro(arma, niv, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                listaBarbaros.add(new Barbaro(arma, niv, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
                 administrarBarbaro admb = new administrarBarbaro("./BARBARO.ih");
                 admb.cargarArchivo();
-                admb.setBarbaro(new Barbaro(arma, niv, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                admb.setListaBarbaros(listaBarbaros);
                 admb.escribirArchivo();
                 JOptionPane.showMessageDialog(this, "Se creó y se guardó exitosamente un Barbaro!");
                 nv_xp.setText("");
@@ -626,9 +727,10 @@ public class Principal extends javax.swing.JFrame {
                 String tipo = cb_tipo.getSelectedItem().toString();
                 String mago = cb_magia.getSelectedItem().toString();
                 per.add(new Mago(mago, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                listaMagos.add(new Mago(mago, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
                 administrarMago admM = new administrarMago("./MAGO.ih");
                 admM.cargarArchivo();
-                admM.setMago(new Mago(mago, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                admM.setListaMagos(listaMagos);
                 admM.escribirArchivo();
                 JOptionPane.showMessageDialog(this, "Se creó y se guardó exitosamente un Mago!");
             } else if (cb_clase.getSelectedIndex() == 3) {
@@ -638,9 +740,10 @@ public class Principal extends javax.swing.JFrame {
                 String instru = cb_ins.getSelectedItem().toString();
                 int cant = Integer.parseInt(cant_robo.getText());
                 per.add(new Picaro(instru, cant, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                listaPicaros.add(new Picaro(instru, cant, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
                 administrarPicaro admP = new administrarPicaro("./PICARO.ih");
                 admP.cargarArchivo();
-                admP.setPicaro(new Picaro(instru, cant, nombre, raza, estatura, peso, edad, ac, cs, hp, descrip, nac, tipo));
+                admP.setListaPicaros(listaPicaros);
                 admP.escribirArchivo();
                 JOptionPane.showMessageDialog(this, "Se creó y se guardó exitosamente un Picaro!");
                 cant_robo.setText("");
@@ -650,10 +753,10 @@ public class Principal extends javax.swing.JFrame {
             jft_edad.setText("");
             jft_peso.setText("");
             jft_estatura.setText("");
-
+            
         } catch (Exception e) {
         }
-
+        
 
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -661,7 +764,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (cb_listar.getSelectedIndex() == 1) {
             
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel)cb_listar_per.getModel();
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_listar_per.getModel();
             modelo.removeAllElements();
             for (Personaje personaje : per) {
                 if (personaje instanceof Barbaro) {
@@ -669,9 +772,9 @@ public class Principal extends javax.swing.JFrame {
                 }
                 
             }
-        } else  if (cb_listar.getSelectedIndex() == 2) {
+        } else if (cb_listar.getSelectedIndex() == 2) {
             
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel)cb_listar_per.getModel();
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_listar_per.getModel();
             modelo.removeAllElements();
             for (Personaje personaje : per) {
                 if (personaje instanceof Mago) {
@@ -681,7 +784,7 @@ public class Principal extends javax.swing.JFrame {
             }
         } else if (cb_listar.getSelectedIndex() == 3) {
             
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel)cb_listar_per.getModel();
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_listar_per.getModel();
             modelo.removeAllElements();
             for (Personaje personaje : per) {
                 if (personaje instanceof Picaro) {
@@ -691,7 +794,7 @@ public class Principal extends javax.swing.JFrame {
             }
         } else if (cb_listar.getSelectedIndex() == 0) {
             
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel)cb_listar_per.getModel();
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_listar_per.getModel();
             modelo.removeAllElements();
             for (Personaje personaje : per) {
                 if (personaje instanceof Clerigo) {
@@ -699,8 +802,27 @@ public class Principal extends javax.swing.JFrame {
                 }
                 
             }
-        }   
+        }        
     }//GEN-LAST:event_cb_listarItemStateChanged
+
+    private void tabStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabStateChanged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tabStateChanged
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        DefaultListModel modelo = (DefaultListModel) lista_eliminar.getModel();
+        for (Personaje personaje : per) {
+            modelo.addElement(personaje);
+        }
+
+
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -739,6 +861,7 @@ public class Principal extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_eliminar_per;
     private javax.swing.JFormattedTextField cant_robo;
     private javax.swing.JComboBox<String> cb_arma;
     private javax.swing.JComboBox<String> cb_clase;
@@ -750,6 +873,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_raza;
     private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -766,6 +890,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -777,6 +902,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JFormattedTextField jft_edad;
     private javax.swing.JFormattedTextField jft_estatura;
     private javax.swing.JFormattedTextField jft_peso;
@@ -784,6 +910,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jt_dios;
     private javax.swing.JTextField jt_invo;
     private javax.swing.JTextField jt_nombre;
+    private javax.swing.JList<String> lista_eliminar;
     private javax.swing.JFormattedTextField nv_xp;
     private javax.swing.JTabbedPane tab;
     // End of variables declaration//GEN-END:variables
@@ -791,4 +918,10 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<Barbaro> listaBarbaros = new ArrayList();
     ArrayList<Mago> listaMagos = new ArrayList();
     ArrayList<Picaro> listaPicaros = new ArrayList();
+    
+    administrarClerigo admc = new administrarClerigo("./CLERIGO.ih");
+    administrarBarbaro admB = new administrarBarbaro("./BARBARO.ih");
+    administrarMago admM = new administrarMago("./MAGO.ih");
+    administrarPicaro admP = new administrarPicaro("./PICARO.ih");
+    
 }

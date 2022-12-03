@@ -127,4 +127,6 @@ public class Personaje implements Serializable{
         return "Personaje{" + "nombre=" + nombre + ", raza=" + raza + ", estaura=" + estaura + ", peso=" + peso + ", edad=" + edad + ", Ac=" + Ac + ", Cs=" + Cs + ", Hp=" + Hp + ", descripcion=" + descripcion + ", nacionalidad=" + nacionalidad + ", Tp=" + Tp + '}';
     }
 
+    
+
 }
