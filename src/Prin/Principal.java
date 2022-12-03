@@ -28,6 +28,7 @@ public class Principal extends javax.swing.JFrame {
         bt_crear_personaje.setBackground(Color.CYAN);
         try {
             admc.cargarArchivo();
+            
             for (Clerigo t : admc.getListaClerigos()) {
                 per.add(t);
             }
