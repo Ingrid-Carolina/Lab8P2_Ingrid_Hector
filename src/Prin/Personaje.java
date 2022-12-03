@@ -15,6 +15,7 @@ public class Personaje implements Serializable{
     protected String descripcion;
     protected String nacionalidad;
     protected String Tp;
+    private static final long SerializableVersion = 777L;
 
     public Personaje() {
     }

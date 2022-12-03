@@ -6,6 +6,7 @@ public class Picaro extends Personaje implements Serializable{
 
     String tipoInstrumento;
     int cantrobo;
+    private static final long SerializableVersion = 777L;
 
     public Picaro() {
     }

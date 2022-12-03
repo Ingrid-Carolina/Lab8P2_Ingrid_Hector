@@ -3,6 +3,7 @@ package Prin;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /*
@@ -23,23 +24,29 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        //defaultpersonajes();
+
         administrarClerigo admc = new administrarClerigo();
         try {
             admc.cargarArchivo();
-        } catch (Exception e){
+        } catch (Exception e) {
         }
         for (Clerigo listaClerigo : admc.getListaClerigos()) {
             listaClerigos.add(listaClerigo);
         }
-        
-        
+
         DefaultComboBoxModel modelo_clase = (DefaultComboBoxModel) cb_clase.getModel();
         modelo_clase.addElement("Clerigo");
         modelo_clase.addElement("Barbaro");
         modelo_clase.addElement("Mago");
         modelo_clase.addElement("Picaro");
         cb_clase.setModel(modelo_clase);
+
+        DefaultComboBoxModel modelo_listar = (DefaultComboBoxModel) cb_listar.getModel();
+        modelo_listar.addElement("Clerigo");
+        modelo_listar.addElement("Barbaro");
+        modelo_listar.addElement("Mago");
+        modelo_listar.addElement("Picaro");
+        cb_listar.setModel(modelo_listar);
 
         DefaultComboBoxModel modelo_nacionalidad = (DefaultComboBoxModel) cb_nac.getModel();
         modelo_nacionalidad.addElement("Norfair");
@@ -92,7 +99,7 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         cb_raza = new javax.swing.JComboBox<>();
@@ -132,8 +139,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        cb_listar = new javax.swing.JComboBox<>();
+        cb_listar_per = new javax.swing.JComboBox<>();
+        jLabel23 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
 
@@ -320,13 +330,13 @@ public class Principal extends javax.swing.JFrame {
                                 .addGap(35, 35, 35))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(106, 106, 106)))
+                                .addGap(112, 112, 112)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel16)
                             .addComponent(cb_ins, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cant_robo))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,86 +402,96 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jLabel16))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(46, 46, 46)
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cb_ins, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel17)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cant_robo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(22, 22, 22))
         );
 
-        jTabbedPane1.addTab("Creacion de Personajes", jPanel1);
+        tab.addTab("Creacion de Personajes", jPanel1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 403, Short.MAX_VALUE)
-        );
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel22.setText("Seleccione la clase:");
 
-        jTabbedPane1.addTab("Modificar Personajes", jPanel2);
+        cb_listar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_listarItemStateChanged(evt);
+            }
+        });
+
+        jLabel23.setText("Seleccione el personaje");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cb_listar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(jLabel23)
+                    .addComponent(cb_listar_per, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(554, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 403, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cb_listar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(jLabel23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cb_listar_per, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(268, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Ver Atributos De un Personaje", jPanel3);
+        tab.addTab("Ver Atributos De un Personaje", jPanel3);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
+            .addGap(0, 729, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 403, Short.MAX_VALUE)
+            .addGap(0, 441, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Eliminar un Personaje", jPanel4);
+        tab.addTab("Eliminar un Personaje", jPanel4);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
+            .addGap(0, 729, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 403, Short.MAX_VALUE)
+            .addGap(0, 441, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Combate", jPanel5);
+        tab.addTab("Combate", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(tab)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(tab)
         );
 
         pack();
@@ -637,6 +657,51 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void cb_listarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_listarItemStateChanged
+        // TODO add your handling code here:
+        if (cb_listar.getSelectedIndex() == 1) {
+            
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel)cb_listar_per.getModel();
+            modelo.removeAllElements();
+            for (Personaje personaje : per) {
+                if (personaje instanceof Barbaro) {
+                    modelo.addElement(personaje);
+                }
+                
+            }
+        } else  if (cb_listar.getSelectedIndex() == 2) {
+            
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel)cb_listar_per.getModel();
+            modelo.removeAllElements();
+            for (Personaje personaje : per) {
+                if (personaje instanceof Mago) {
+                    modelo.addElement(personaje);
+                }
+                
+            }
+        } else if (cb_listar.getSelectedIndex() == 3) {
+            
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel)cb_listar_per.getModel();
+            modelo.removeAllElements();
+            for (Personaje personaje : per) {
+                if (personaje instanceof Picaro) {
+                    modelo.addElement(personaje);
+                }
+                
+            }
+        } else if (cb_listar.getSelectedIndex() == 0) {
+            
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel)cb_listar_per.getModel();
+            modelo.removeAllElements();
+            for (Personaje personaje : per) {
+                if (personaje instanceof Clerigo) {
+                    modelo.addElement(personaje);
+                }
+                
+            }
+        }   
+    }//GEN-LAST:event_cb_listarItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -672,18 +737,14 @@ public class Principal extends javax.swing.JFrame {
         });
     }
 
-//    public static void defaultpersonajes() {
-//        per.add(new Clerigo("Lucifer", "Hielo", "lamar", "Elfo", 5.7, 8.4, 23, 40, 97, 78, "Increible", "Zebes", "lead"));
-//        per.add(new Barbaro("ligera", 57, "Fer", "Elfo", 8.4, 5.3, 33, 65, 93, 81, "Bosque", "Crateria", "offensive"));
-//        per.add(new Mago("Sanador", "Juan", "Mediano", 9.3, 4.6, 29, 20, 101, 54, "Fuerte", "Norfair", "Tank"));
-//        per.add(new Mago("Mago Negro", "luis", "Enano", 6.5, 8.4, 29, 20, 101, 85, "Veloz", "Brinstar", "Support"));
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField cant_robo;
     private javax.swing.JComboBox<String> cb_arma;
     private javax.swing.JComboBox<String> cb_clase;
     private javax.swing.JComboBox<String> cb_ins;
+    private javax.swing.JComboBox<String> cb_listar;
+    private javax.swing.JComboBox<String> cb_listar_per;
     private javax.swing.JComboBox<String> cb_magia;
     private javax.swing.JComboBox<String> cb_nac;
     private javax.swing.JComboBox<String> cb_raza;
@@ -703,6 +764,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -711,11 +774,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JFormattedTextField jft_edad;
     private javax.swing.JFormattedTextField jft_estatura;
     private javax.swing.JFormattedTextField jft_peso;
@@ -724,6 +785,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jt_invo;
     private javax.swing.JTextField jt_nombre;
     private javax.swing.JFormattedTextField nv_xp;
+    private javax.swing.JTabbedPane tab;
     // End of variables declaration//GEN-END:variables
     ArrayList<Clerigo> listaClerigos = new ArrayList();
     ArrayList<Barbaro> listaBarbaros = new ArrayList();

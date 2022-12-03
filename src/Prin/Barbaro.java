@@ -11,10 +11,10 @@ import java.io.Serializable;
  * @author ADMINISTRADOR1
  */
 public class Barbaro extends Personaje implements Serializable{
-
     private String arma;
     private int px;
-
+    
+    
     public Barbaro() {
     }
 

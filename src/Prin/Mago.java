@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Mago extends Personaje implements Serializable{
 
     private String tipodeMagia;
+    private static final long SerializableVersion = 777L;
 
     public Mago() {
     }

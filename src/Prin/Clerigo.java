@@ -14,6 +14,7 @@ public class Clerigo extends Personaje implements Serializable{
 
     private String dios;
     private String invocacion;
+    private static final long SerializableVersion = 777L;
 
     public Clerigo() {
     }
