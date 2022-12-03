@@ -183,8 +183,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lista_eliminar = new javax.swing.JList<>();
-        bt_eliminar_per = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -382,7 +382,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(cb_ins, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cant_robo))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,7 +487,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jScrollPane2)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 219, Short.MAX_VALUE)
+                .addGap(0, 268, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel23)
@@ -521,15 +521,12 @@ public class Principal extends javax.swing.JFrame {
         jLabel24.setText("Seleccione el personaje a eliminar:");
 
         lista_eliminar.setModel(new DefaultListModel());
-        jScrollPane1.setViewportView(lista_eliminar);
-
-        bt_eliminar_per.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        bt_eliminar_per.setText("Eliminar");
-        bt_eliminar_per.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bt_eliminar_perMouseClicked(evt);
+        lista_eliminar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                lista_eliminarKeyPressed(evt);
             }
         });
+        jScrollPane1.setViewportView(lista_eliminar);
 
         jButton2.setText("Listar");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -543,37 +540,39 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel25.setText("Para eliminar, selecciona el personaje y presiona la tecla DELETE");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(bt_eliminar_per, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
-            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
+                        .addGap(213, 213, 213)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(219, 219, 219)
                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addGap(190, 190, 190)
+                        .addComponent(jLabel25)))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bt_eliminar_per, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         tab.addTab("Eliminar un Personaje", jPanel4);
@@ -582,7 +581,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 729, Short.MAX_VALUE)
+            .addGap(0, 778, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -833,10 +832,43 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void bt_eliminar_perMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eliminar_perMouseClicked
+    private void lista_eliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lista_eliminarKeyPressed
         // TODO add your handling code here:
+        try{
+        if (evt.getKeyCode() == evt.VK_DELETE) {//evaule la tecla de presiono fue delete
+           if (lista_eliminar.getSelectedIndex() >= 0) {//y alguien seleccionado en la JList
+               //trapar el modelo Jlist 
+               DefaultListModel modelo= (DefaultListModel) lista_eliminar.getModel();
+               //para eliminar 
+                modelo.remove(lista_eliminar.getSelectedIndex());
+                //devuelve el modelo 
+                lista_eliminar.setModel(modelo);
+//                admB.cargarArchivo();
+//                admB.getListaBarbaros().remove(lista_eliminar.getSelectedIndex());
+//                admB.escribirArchivo();
+//                
+//                admM.cargarArchivo();
+//                admM.getListaMagos().remove(lista_eliminar.getSelectedIndex());
+//                 admM.escribirArchivo();
+//                admP.cargarArchivo();
+//                 admP.getListaPicaros().remove(lista_eliminar.getSelectedIndex());
+//                 admP.escribirArchivo();
+//                
+//                admc.cargarArchivo();
+//                 admc.getListaClerigos().remove(lista_eliminar.getSelectedIndex());
+//                 admc.escribirArchivo();
+                //el mensaje
+                JOptionPane.showMessageDialog(this,
+                        "Eliminado exitosamente");
+                
+            } 
+        }
+        }catch(Exception e){
+            
+        }
+
         
-    }//GEN-LAST:event_bt_eliminar_perMouseClicked
+    }//GEN-LAST:event_lista_eliminarKeyPressed
 
     /**
      * @param args the command line arguments
@@ -875,7 +907,6 @@ public class Principal extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bt_eliminar_per;
     private javax.swing.JFormattedTextField cant_robo;
     private javax.swing.JComboBox<String> cb_arma;
     private javax.swing.JComboBox<String> cb_clase;
@@ -904,6 +935,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
